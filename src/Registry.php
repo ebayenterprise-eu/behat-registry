@@ -130,7 +130,9 @@ class Registry extends \ArrayObject
 
         $this->persister->beginTransaction();
         foreach ($this as $entity) {
-            $this->persister->remove($entity);
+            if ($entity !== null) {
+                $this->persister->remove($entity);
+            }
         }
 
         $this->persister->commitTransaction();
